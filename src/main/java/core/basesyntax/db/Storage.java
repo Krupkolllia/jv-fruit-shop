@@ -1,4 +1,9 @@
 package core.basesyntax.db;
 
-public interface Storage {
+import java.util.Map;
+
+public interface Storage<K, V> {
+    public Map<K, V> getAll();
+
+    public void put(K key, V value);
 }
