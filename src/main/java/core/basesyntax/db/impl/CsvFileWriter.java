@@ -1,16 +1,15 @@
 package core.basesyntax.db.impl;
 
-import com.opencsv.CSVWriter;
 import core.basesyntax.db.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class CsvFileWriter implements FileWriter {
     @Override
     public void write(String data, String fileName) {
-        try (CSVWriter csvWriter = new CSVWriter(new java.io.FileWriter(fileName))) {
-            for (String line : data.split("\n")) {
-                csvWriter.writeNext(line.split(","));
-            }
+        try {
+            Files.writeString(Path.of(fileName), data);
         } catch (IOException e) {
             throw new RuntimeException("Failed to write file: " + fileName, e);
         }
