@@ -5,5 +5,7 @@ import java.util.Map;
 public interface Storage<K, V> {
     public Map<K, V> getAll();
 
-    public void put(K key, V value);
+    public V getByKey(K key);
+
+    public void update(K key, V value);
 }

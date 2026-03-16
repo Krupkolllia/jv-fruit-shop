@@ -12,7 +12,14 @@ public class ShopStorage implements Storage<String, Integer> {
         return Collections.unmodifiableMap(products);
     }
 
-    public void put(String key, Integer value) {
+    public Integer getByKey(String key) {
+        if (!products.containsKey(key)) {
+            throw new RuntimeException("No such product as " + key);
+        }
+        return products.get(key);
+    }
+
+    public void update(String key, Integer value) {
         products.put(key, value);
     }
 }
