@@ -1,7 +1,6 @@
 package core.basesyntax.db.impl;
 
 import core.basesyntax.db.Storage;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;

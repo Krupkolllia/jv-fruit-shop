@@ -1,7 +1,7 @@
 package core.basesyntax.model;
 
 public class ShopTransaction {
-    public enum OPERATION {
+    public enum Operation {
         BALANCE,
         SUPPLY,
         PURCHASE,
