@@ -4,14 +4,17 @@ import core.basesyntax.model.ShopTransaction;
 import core.basesyntax.strategy.ShopOperationHandler;
 import core.basesyntax.strategy.OperationStrategy;
 
+import java.util.Map;
+
 public class ShopOperationStrategy implements OperationStrategy {
+    private final Map<ShopTransaction.Operation, ShopOperationHandler> handlers;
+
+    public ShopOperationStrategy(Map<ShopTransaction.Operation, ShopOperationHandler> handlers) {
+        this.handlers = handlers;
+    }
+
     @Override
     public ShopOperationHandler resolve(ShopTransaction.Operation operationType) {
-        return switch (operationType) {
-            case BALANCE -> new ShopBalanceOperationHandler();
-            case SUPPLY -> new ShopSupplyOperationHandler();
-            case PURCHASE -> new ShopPurchaseOperationHandler();
-            case RETURN -> new ShopReturnOperationHandler();
-        };
+        return handlers.get(operationType);
     }
 }

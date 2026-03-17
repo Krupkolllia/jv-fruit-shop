@@ -10,12 +10,19 @@ import core.basesyntax.model.ShopTransaction;
 import core.basesyntax.service.ShopService;
 import core.basesyntax.service.impl.DefaultShopService;
 import core.basesyntax.strategy.OperationStrategy;
+import core.basesyntax.strategy.ShopOperationHandler;
+import core.basesyntax.strategy.impl.ShopBalanceOperationHandler;
 import core.basesyntax.strategy.impl.ShopOperationStrategy;
+import core.basesyntax.strategy.impl.ShopPurchaseOperationHandler;
+import core.basesyntax.strategy.impl.ShopReturnOperationHandler;
+import core.basesyntax.strategy.impl.ShopSupplyOperationHandler;
 import core.basesyntax.util.Mapper;
 import core.basesyntax.util.ReportGenerator;
 import core.basesyntax.util.impl.CsvShopReportGenerator;
 import core.basesyntax.util.impl.ShopTransactionMapper;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     private static final String INPUT_FILE = "src/main/resources/input-example.csv";
@@ -32,7 +39,13 @@ public class Application {
                 .map(shopTransactionMapper::map)
                 .toList();
 
-        OperationStrategy operationStrategy = new ShopOperationStrategy();
+        Map<ShopTransaction.Operation, ShopOperationHandler> operationHandlers = new HashMap<>();
+        operationHandlers.put(ShopTransaction.Operation.BALANCE, new ShopBalanceOperationHandler());
+        operationHandlers.put(ShopTransaction.Operation.SUPPLY, new ShopSupplyOperationHandler());
+        operationHandlers.put(ShopTransaction.Operation.PURCHASE, new ShopPurchaseOperationHandler());
+        operationHandlers.put(ShopTransaction.Operation.RETURN, new ShopReturnOperationHandler());
+
+        OperationStrategy operationStrategy = new ShopOperationStrategy(operationHandlers);
         ShopService shopService = new DefaultShopService(shopStorage, operationStrategy);
         shopService.process(transactions);
 
