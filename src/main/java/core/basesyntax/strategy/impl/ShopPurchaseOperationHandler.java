@@ -15,6 +15,6 @@ public class ShopPurchaseOperationHandler implements ShopOperationHandler {
             throw new RuntimeException("Not enough stock for product: " + product);
         }
 
-        storage.update(product, stockQuantity);
+        storage.update(product, stockQuantity - quantity);
     }
 }
