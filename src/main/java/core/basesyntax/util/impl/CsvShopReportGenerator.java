@@ -16,7 +16,7 @@ public class CsvShopReportGenerator implements ReportGenerator {
         report.append(REPORT_TITLE);
 
         for (Map.Entry<String, Integer> entry : dataFromStorage.entrySet()) {
-            report.append("\n")
+            report.append(System.lineSeparator())
                     .append(entry.getKey())
                     .append(DELIMITER)
                     .append(entry.getValue());
