@@ -46,6 +46,8 @@ public class Application {
 
         Mapper<String, ShopTransaction> shopTransactionMapper = new ShopTransactionMapper();
         List<ShopTransaction> transactions = input.stream()
+                .skip(1)
+                .filter(line -> !line.isBlank())
                 .map(shopTransactionMapper::map)
                 .toList();
         shopService.process(transactions);
