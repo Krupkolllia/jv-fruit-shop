@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ShopStorage implements Storage<String, Integer> {
+public class ShopStorage implements Storage {
     private final Map<String, Integer> products = new HashMap<>();
 
     public Map<String, Integer> getAll() {

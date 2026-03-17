@@ -5,7 +5,6 @@ import core.basesyntax.model.ShopTransaction;
 import core.basesyntax.service.ShopOperationHandler;
 import core.basesyntax.service.ShopService;
 import core.basesyntax.strategy.OperationStrategy;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -15,7 +14,8 @@ public class DefaultShopService implements ShopService {
 
     public DefaultShopService(Storage storage, OperationStrategy operationStrategy) {
         this.storage = Objects.requireNonNull(storage, "storage is null");
-        this.operationStrategy = Objects.requireNonNull(operationStrategy, "operationStrategy is null");
+        this.operationStrategy = Objects.requireNonNull(
+                operationStrategy, "operationStrategy is null");
     }
 
     @Override
