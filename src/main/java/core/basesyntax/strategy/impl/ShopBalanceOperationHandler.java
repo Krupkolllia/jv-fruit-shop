@@ -6,10 +6,7 @@ import core.basesyntax.strategy.ShopOperationHandler;
 public class ShopBalanceOperationHandler implements ShopOperationHandler {
     @Override
     public void handle(Storage storage, String product, Integer quantity) {
-        if (storage.getAll().containsKey(product)) {
-            throw new RuntimeException("Product already exists: " + product);
-        }
-
+        ShopHandlerValidator.validate(storage, product, quantity);
         storage.update(product, quantity);
     }
 }

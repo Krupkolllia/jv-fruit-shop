@@ -22,6 +22,6 @@ public class ShopOperationStrategy implements OperationStrategy {
             throw new RuntimeException("No handler for operation: " + operationType);
         }
 
-        return handlers.get(operationType);
+        return handler;
     }
 }
