@@ -2,9 +2,9 @@ package core.basesyntax.service.impl;
 
 import core.basesyntax.db.Storage;
 import core.basesyntax.model.ShopTransaction;
-import core.basesyntax.strategy.ShopOperationHandler;
 import core.basesyntax.service.ShopService;
 import core.basesyntax.strategy.OperationStrategy;
+import core.basesyntax.strategy.ShopOperationHandler;
 import java.util.List;
 import java.util.Objects;
 

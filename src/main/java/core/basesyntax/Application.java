@@ -1,13 +1,13 @@
 package core.basesyntax;
 
-import core.basesyntax.service.FileReader;
-import core.basesyntax.service.FileWriter;
 import core.basesyntax.db.Storage;
-import core.basesyntax.service.impl.CsvFileReader;
-import core.basesyntax.service.impl.CsvFileWriter;
 import core.basesyntax.db.impl.ShopStorage;
 import core.basesyntax.model.ShopTransaction;
+import core.basesyntax.service.FileReader;
+import core.basesyntax.service.FileWriter;
 import core.basesyntax.service.ShopService;
+import core.basesyntax.service.impl.CsvFileReader;
+import core.basesyntax.service.impl.CsvFileWriter;
 import core.basesyntax.service.impl.DefaultShopService;
 import core.basesyntax.strategy.OperationStrategy;
 import core.basesyntax.strategy.ShopOperationHandler;
@@ -34,19 +34,20 @@ public class Application {
         FileReader fileReader = new CsvFileReader();
         List<String> input = fileReader.read(INPUT_FILE);
 
-        Mapper<String, ShopTransaction> shopTransactionMapper = new ShopTransactionMapper();
-        List<ShopTransaction> transactions = input.stream()
-                .map(shopTransactionMapper::map)
-                .toList();
-
         Map<ShopTransaction.Operation, ShopOperationHandler> operationHandlers = new HashMap<>();
         operationHandlers.put(ShopTransaction.Operation.BALANCE, new ShopBalanceOperationHandler());
         operationHandlers.put(ShopTransaction.Operation.SUPPLY, new ShopSupplyOperationHandler());
-        operationHandlers.put(ShopTransaction.Operation.PURCHASE, new ShopPurchaseOperationHandler());
+        operationHandlers.put(ShopTransaction.Operation.PURCHASE,
+                new ShopPurchaseOperationHandler());
         operationHandlers.put(ShopTransaction.Operation.RETURN, new ShopReturnOperationHandler());
 
         OperationStrategy operationStrategy = new ShopOperationStrategy(operationHandlers);
         ShopService shopService = new DefaultShopService(shopStorage, operationStrategy);
+
+        Mapper<String, ShopTransaction> shopTransactionMapper = new ShopTransactionMapper();
+        List<ShopTransaction> transactions = input.stream()
+                .map(shopTransactionMapper::map)
+                .toList();
         shopService.process(transactions);
 
         ReportGenerator reportGenerator = new CsvShopReportGenerator();
