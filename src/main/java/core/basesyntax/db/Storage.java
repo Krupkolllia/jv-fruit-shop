@@ -2,10 +2,10 @@ package core.basesyntax.db;
 
 import java.util.Map;
 
-public interface Storage<K, V> {
-    public Map<K, V> getAll();
+public interface Storage {
+    public Map<String, Integer> getAll();
 
-    public V getByKey(K key);
+    public Integer getByKey(String key);
 
-    public void update(K key, V value);
+    public void update(String key, Integer value);
 }
