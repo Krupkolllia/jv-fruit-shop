@@ -2,7 +2,6 @@ package core.basesyntax.util.impl;
 
 import core.basesyntax.model.ShopTransaction;
 import core.basesyntax.util.Mapper;
-
 import java.util.Objects;
 
 public class ShopTransactionMapper implements Mapper<String, ShopTransaction> {
