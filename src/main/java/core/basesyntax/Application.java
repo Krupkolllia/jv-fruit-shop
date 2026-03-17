@@ -1,10 +1,10 @@
 package core.basesyntax;
 
-import core.basesyntax.db.FileReader;
-import core.basesyntax.db.FileWriter;
+import core.basesyntax.service.FileReader;
+import core.basesyntax.service.FileWriter;
 import core.basesyntax.db.Storage;
-import core.basesyntax.db.impl.CsvFileReader;
-import core.basesyntax.db.impl.CsvFileWriter;
+import core.basesyntax.service.impl.CsvFileReader;
+import core.basesyntax.service.impl.CsvFileWriter;
 import core.basesyntax.db.impl.ShopStorage;
 import core.basesyntax.model.ShopTransaction;
 import core.basesyntax.service.ShopService;

@@ -1,11 +1,7 @@
 package core.basesyntax.strategy.impl;
 
 import core.basesyntax.model.ShopTransaction;
-import core.basesyntax.service.ShopOperationHandler;
-import core.basesyntax.service.impl.ShopBalanceOperationHandler;
-import core.basesyntax.service.impl.ShopPurchaseOperationHandler;
-import core.basesyntax.service.impl.ShopReturnOperationHandler;
-import core.basesyntax.service.impl.ShopSupplyOperationHandler;
+import core.basesyntax.strategy.ShopOperationHandler;
 import core.basesyntax.strategy.OperationStrategy;
 
 public class ShopOperationStrategy implements OperationStrategy {
